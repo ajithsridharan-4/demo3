@@ -1,0 +1,28 @@
+steps:
+  # 1. Build the JAR file
+  - name: 'gcr.io/cloud-builders/mvn'
+    args: ['clean', 'package']
+  
+  # 2. Build Docker image
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['build', '-t', 'gcr.io/$PROJECT_ID/my-spring-app', '.']
+  
+  # 3. Push the image to Google Container Registry (GCR) or Artifact Registry
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['push', 'gcr.io/$PROJECT_ID/my-spring-app']
+
+  # 4. Deploy to Cloud Run
+  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+    args: [
+      'gcloud', 'run', 'deploy', 'my-spring-app',
+      '--image', 'gcr.io/$PROJECT_ID/my-spring-app',
+      '--platform', 'managed',
+      '--region', 'us-central1',
+      '--allow-unauthenticated'
+    ]
+
+images:
+  - 'gcr.io/$PROJECT_ID/my-spring-app'
+  
+options:
+    logging: CLOUD_LOGGING_ONLY
