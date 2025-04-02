@@ -22,6 +22,6 @@ public class Employee {
 	private String name;
 	private double salary;
 	
-	//jhjh
+	//getter setter
 	
 }
