@@ -27,7 +27,7 @@ public class EmployeeController {
 	@GetMapping("test")
 	public String getMessage()
 	{
-		return "Welcome to Spring boot......ajith";
+		return "Welcome to Spring boot......ajith jfs";
 	}
 	
 	@PostMapping
