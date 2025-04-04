@@ -1,6 +1,7 @@
 package com.example.demo3;
 
 import jakarta.annotation.Generated;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
